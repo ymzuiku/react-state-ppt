@@ -20,14 +20,17 @@ function Router({ path, children }) {
   );
 }
 
-ReactDOM.render(
-  <Provider>
-    <Router path="SimpleExample">
-      <SimpleExample />
-    </Router>
-    <Router path="ReRenderExample">
-      <ReRenderExample />
-    </Router>
-  </Provider>,
-  document.getElementById('root'),
-);
+function App() {
+  return (
+    <Provider>
+      <Router path="SimpleExample">
+        <SimpleExample />
+      </Router>
+      <Router path="ReRenderExample">
+        <ReRenderExample />
+      </Router>
+    </Provider>
+  );
+}
+
+ReactDOM.render(<App />, document.getElementById('root'));
