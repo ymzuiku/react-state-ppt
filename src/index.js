@@ -11,6 +11,7 @@ function Router({ path, children }) {
     <Consumer>
       {state => {
         if (state.path === path) {
+          // 同步浏览器 url
           window.history.replaceState(null, path, path);
           return children;
         }

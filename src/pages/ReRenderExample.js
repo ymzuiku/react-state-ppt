@@ -30,7 +30,7 @@ function ReRenderExample() {
 
       <button onClick={dispatchs.dispatchOfAddNum}>点击仅重绘number</button>
       <button onClick={dispatchs.dispatchOfAddListFirst}>点击仅重绘List的第一栏， 并且模拟了异步500ms才更新</button>
-      <button onClick={dispatchs.dispatchOfAddListLength}>添加一栏list，并且只重绘新添加的那一栏</button>
+      <button onClick={dispatchs.dispatchOfAddListLength}>添加一栏list</button>
       <button onClick={dispatchs.dispatchOfJumpToSimpleExample}>回到第一个例子页面</button>
     </div>
   );

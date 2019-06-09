@@ -2,7 +2,7 @@
 
 旨在阐述清楚 声明式 的状态管理思路，以 React 作为例子，思路适用于所有 声明式 UI 的状态管理方案
 
-## 状态管理代码核心代码
+## 用 40 行代码实现状态管理核心
 
 ```js
 import React, { createContext, useMemo, useContext } from 'react';
@@ -43,7 +43,7 @@ export default function createStateManager(initalState = {}) {
 
 ## 状态管理的使用
 
-### 实例化 store, Provider, Consumer
+### 1. 实例化 store, Provider, Consumer
 
 ```js
 import createStateManager from './utils/createStateManager';
@@ -62,7 +62,7 @@ const { store, Provider, Consumer } = createStateManager(initState);
 export { store, Provider, Consumer };
 ```
 
-### 在项目顶部注册 Provider
+### 2. 在项目顶部注册 Provider
 
 ```js
 import './index.css';
@@ -82,7 +82,7 @@ function App() {
 ReactDOM.render(<App />, document.getElementById('root'));
 ```
 
-### 编写 dispatch
+### 3. 编写 dispatch
 
 整个项目的状态管理代码，只有 dispatch, 我们只需要要编写 dispatch 即可。
 
@@ -98,7 +98,7 @@ export function dispatchOfAddNum() {
 }
 ```
 
-### 最后在代码中使用状态和触发状态
+### 4. 最后在代码中使用状态和触发状态
 
 ```js
 import React from 'react';
