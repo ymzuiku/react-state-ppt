@@ -1,12 +1,33 @@
+import './index.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import SimpleExample from './pages/SimpleExample';
+import ReRenderExample from './pages/ReRenderExample';
+import { Provider, Consumer } from './store';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+// 使用状态管理简单模拟一个 react-router, 并且将router也接入状态管理中
+function Router({ path, children }) {
+  return (
+    <Consumer>
+      {state => {
+        if (state.path === path) {
+          window.history.replaceState(null, path, path);
+          return children;
+        }
+        return null;
+      }}
+    </Consumer>
+  );
+}
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+ReactDOM.render(
+  <Provider>
+    <Router path="SimpleExample">
+      <SimpleExample />
+    </Router>
+    <Router path="ReRenderExample">
+      <ReRenderExample />
+    </Router>
+  </Provider>,
+  document.getElementById('root'),
+);
