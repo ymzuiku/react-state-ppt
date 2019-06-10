@@ -41,7 +41,7 @@ export default function createStateManager(initalState = {}) {
 }
 ```
 
-## 状态管理的环境配置
+## 状态管理的绑定
 
 ### 1. 实例化 store, Provider, Consumer
 
