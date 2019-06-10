@@ -6,7 +6,7 @@ import ReRenderExample from './pages/ReRenderExample';
 import { Provider, Consumer } from './store';
 
 // 使用状态管理简单模拟一个 react-router, 并且将router也接入状态管理中
-function Router({ path, children }) {
+function Route({ path, children }) {
   return (
     <Consumer>
       {state => {
@@ -24,12 +24,12 @@ function Router({ path, children }) {
 function App() {
   return (
     <Provider>
-      <Router path="SimpleExample">
+      <Route path="SimpleExample">
         <SimpleExample />
-      </Router>
-      <Router path="ReRenderExample">
+      </Route>
+      <Route path="ReRenderExample">
         <ReRenderExample />
-      </Router>
+      </Route>
     </Provider>
   );
 }
