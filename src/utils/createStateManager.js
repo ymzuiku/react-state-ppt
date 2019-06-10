@@ -1,4 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { createContext, useMemo, useContext } from 'react';
 import immer from 'immer';
 
@@ -17,7 +19,7 @@ export default function createStateManager(initalState = {}) {
       store.state = state;
 
       return <store.Provider value={state} {...rest} />;
-    }, [rest, state]);
+    }, [state]);
   };
 
   // 创建一个消费者组件
@@ -26,11 +28,9 @@ export default function createStateManager(initalState = {}) {
 
     // 使用props控制 memo
     if (typeof memo === 'function') {
-      const memoList = memo(state);
-
       return useMemo(() => {
         return children(state, store.dispatch);
-      }, [children, state]);
+      }, memo(state));
     }
     return children(state, store.dispatch);
   };
