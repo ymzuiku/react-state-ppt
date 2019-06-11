@@ -137,8 +137,6 @@ test('add card', async () => {
   await dispatchOfAddNum(10);
 
   // 当函dispatch执行完成，我们检查一下store是否和我们预期的值一致即可
-  expect(store.state).toBe({
-    id: 10,
-  });
+  expect(store.state.user.info.num).toBe(10);
 });
 ```
