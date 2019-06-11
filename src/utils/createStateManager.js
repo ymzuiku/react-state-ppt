@@ -15,7 +15,7 @@ export default function createStateManager(initalState = {}) {
     // 仅有 state 变更了, 才会重新更新 context 和 store
     return useMemo(() => {
       // 使用 immer 进行更新状态, 确保未更新的对象还是旧的引用
-      store.dispatch = fn => setState(immer(state, v => fn(v)));
+      store.setState = fn => setState(immer(state, v => fn(v)));
       store.state = state;
 
       return <store.Provider value={state} {...rest} />;
@@ -29,10 +29,10 @@ export default function createStateManager(initalState = {}) {
     // 使用props控制 memo
     if (typeof memo === 'function') {
       return useMemo(() => {
-        return children(state, store.dispatch);
+        return children(state, store.setState);
       }, memo(state));
     }
-    return children(state, store.dispatch);
+    return children(state, store.setState);
   };
 
   return { Provider, store, Consumer };

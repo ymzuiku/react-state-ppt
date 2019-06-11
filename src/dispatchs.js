@@ -14,7 +14,7 @@ function testAsync() {
  * 异步修改列表第一栏
  */
 export function dispatchOfAddNum() {
-  store.dispatch(state => {
+  store.setState(state => {
     state.user.info.num += 1;
   });
 }
@@ -25,7 +25,7 @@ export function dispatchOfAddNum() {
 export async function dispatchOfAddListFirst() {
   // 模拟异步 500ms
   await testAsync();
-  store.dispatch(state => {
+  store.setState(state => {
     state.user.list[0] = 'dog ' + Math.random();
   });
 }
@@ -34,7 +34,7 @@ export async function dispatchOfAddListFirst() {
  * 添加列表长度
  */
 export function dispatchOfAddListLength() {
-  store.dispatch(state => {
+  store.setState(state => {
     state.user.list[state.user.list.length] = 'dog ' + Math.random();
   });
 }
@@ -43,7 +43,7 @@ export function dispatchOfAddListLength() {
  * 跳转至第二个例子
  */
 export function dispatchOfJumpToReRenderExample() {
-  store.dispatch(state => {
+  store.setState(state => {
     state.path = 'ReRenderExample';
   });
 }
@@ -52,7 +52,7 @@ export function dispatchOfJumpToReRenderExample() {
  * 跳转至第一个例子
  */
 export function dispatchOfJumpToSimpleExample() {
-  store.dispatch(state => {
+  store.setState(state => {
     state.path = 'SimpleExample';
   });
 }

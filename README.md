@@ -22,7 +22,7 @@ export default function createStateManager(initalState = {}) {
 
     return useMemo(() => {
       // 使用 immer 进行更新状态, 确保未更新的对象还是旧的引用
-      store.dispatch = fn => setState(immer(state, v => fn(v)));
+      store.setState = fn => setState(immer(state, v => fn(v)));
       store.state = state;
 
       return <store.Provider value={state} {...rest} />;
@@ -35,10 +35,10 @@ export default function createStateManager(initalState = {}) {
 
     if (typeof memo === 'function') {
       return useMemo(() => {
-        return children(state, store.dispatch);
+        return children(state, store.setState);
       }, memo(state));
     }
-    return children(state, store.dispatch);
+    return children(state, store.setState);
   };
 
   return { Provider, store, Consumer };
@@ -99,7 +99,7 @@ import { store } from './store';
 
 export function dispatchOfAddNum() {
   // 在任何异步结束之后，处理状态更新
-  store.dispatch(state => {
+  store.setState(state => {
     // 此处执行区域是 immer 的更新函数，所以直接赋值即可，不需要返回整个 state
     state.user.info.num += 1;
   });
