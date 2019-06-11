@@ -1095,6 +1095,13 @@
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
+"@nuage/react-consumer@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@nuage/react-consumer/-/react-consumer-0.0.2.tgz#811911cf623f6f75aa4800b6d363667f217638fc"
+  integrity sha512-MA182q/3xgfmmSaMeGQ7ujP1Z/HpwuCCJBY9RRidisZKatFmo9fnzufhCJdsmkvsOEcajbXgYQ6cK9szVZJBJQ==
+  dependencies:
+    immer "^3.1.3"
+
 "@svgr/babel-plugin-add-jsx-attribute@^4.2.0":
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/@svgr/babel-plugin-add-jsx-attribute/-/babel-plugin-add-jsx-attribute-4.2.0.tgz#dadcb6218503532d6884b210e7f3c502caaa44b1"

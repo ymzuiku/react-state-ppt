@@ -9,38 +9,40 @@
 ### 1. 用 40 行代码实现状态管理核心
 
 ```js
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { createContext, useMemo, useContext } from 'react';
 import immer from 'immer';
 
 export default function createStateManager(initalState = {}) {
-  // 创建一个  context, 用于后续配合 useContext 进行更新组件
+  // 创建一个 context
   const store = createContext();
 
-  // 创建一个提供者组件
-  const Provider = ({ defaultState = initalState, ...rest }) => {
-    const [state, setState] = React.useState(defaultState);
-
-    return useMemo(() => {
-      // 使用 immer 进行更新状态, 确保未更新的对象还是旧的引用
-      store.setState = fn => setState(immer(state, v => fn(v)));
-      store.state = state;
-
-      return <store.Provider value={state} {...rest} />;
-    }, [state]);
+  store.state = initalState;
+  store.setState = fn => {
+    store.state = immer(store.state, v => fn(v));
   };
 
+  // 创建一个提供者组件
+  const Provider = props => {
+    const [state, setState] = React.useState(store.state);
+
+    // 使用 immer 进行更新状态, 确保未更新的对象还是旧的引用
+    store.setState = fn => setState(immer(state, v => fn(v)));
+    store.state = state;
+
+    return <store.Provider value={state} {...props} />;
+  };
   // 创建一个消费者组件
   const Consumer = ({ children, memo }) => {
     const state = useContext(store);
 
-    if (typeof memo === 'function') {
-      return useMemo(() => {
+    return useMemo(
+      () => {
         return children(state, store.setState);
-      }, memo(state));
-    }
-    return children(state, store.setState);
+      },
+      memo ? memo(state) : void 0,
+    );
   };
-
   return { Provider, store, Consumer };
 }
 ```
@@ -141,3 +143,11 @@ test('add card', async () => {
   expect(store.state.user.info.num).toBe(10);
 });
 ```
+
+我们可以在项目中运行 yarn test 验证以上测试
+
+## Typescript 版本的例子
+
+我们也将 createStateManager 编写了 Typescript 的版本， 例子请迁移：
+
+[https://www.npmjs.com/package/@nuage/react-consumer](https://www.npmjs.com/package/@nuage/react-consumer)
