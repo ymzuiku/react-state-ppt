@@ -20,13 +20,22 @@ export function dispatchOfAddNum() {
 }
 
 /**
- * 异步修改列表第一栏
+ * 同步修改列表第一栏
  */
-export async function dispatchOfAddListFirst() {
+export function dispatchOfAddListFirst() {
+  store.setState(state => {
+    state.user.list[0] = 'dog ' + Math.random();
+  });
+}
+
+/**
+ * 异步修改列表第二栏
+ */
+export async function dispatchOfAddListSecond() {
   // 模拟异步 500ms
   await testAsync();
   store.setState(state => {
-    state.user.list[0] = 'dog ' + Math.random();
+    state.user.list[1] = 'dog ' + Math.random();
   });
 }
 

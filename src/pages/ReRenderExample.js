@@ -2,6 +2,11 @@ import React from 'react';
 import * as dispatchs from '../dispatchs';
 import { Consumer } from '../store';
 
+// 用于记录重绘次数
+function Item({ title }) {
+  return <h2>{title}</h2>;
+}
+
 function ReRenderExample() {
   console.log('此日志若打印两次，表示 App 被重复渲染');
   return (
@@ -20,7 +25,7 @@ function ReRenderExample() {
               <Consumer key={v} memo={state => [state.user.list[i]]}>
                 {state => {
                   console.log(`重绘列表的某一列, 当前重绘的是列：${i}`);
-                  return <h2>{state.user.list[i]}</h2>;
+                  return <Item title={state.user.list[i]} />;
                 }}
               </Consumer>
             );
@@ -29,7 +34,8 @@ function ReRenderExample() {
       </Consumer>
 
       <button onClick={dispatchs.dispatchOfAddNum}>点击仅重绘number</button>
-      <button onClick={dispatchs.dispatchOfAddListFirst}>点击仅重绘List的第一栏， 并且模拟了异步500ms才更新</button>
+      <button onClick={dispatchs.dispatchOfAddListFirst}>点击仅重绘List的第 1 栏</button>
+      <button onClick={dispatchs.dispatchOfAddListSecond}>点击仅重绘List的第 2 栏， 并且模拟了异步500ms才更新</button>
       <button onClick={dispatchs.dispatchOfAddListLength}>添加一栏list</button>
       <button onClick={dispatchs.dispatchOfJumpToSimpleExample}>回到第一个例子页面</button>
     </div>
