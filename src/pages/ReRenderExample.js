@@ -15,7 +15,7 @@ function ReRenderExample() {
       <Consumer memo={state => [state.user.info.num]}>
         {state => {
           console.log('重绘number');
-          return <h2>{state.user.info.num}</h2>;
+          return <Item title={state.user.info.num} />;
         }}
       </Consumer>
       <Consumer memo={state => [state.user.list]}>
