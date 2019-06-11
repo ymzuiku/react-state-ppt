@@ -150,4 +150,4 @@ test('add card', async () => {
 
 我们也将 createStateManager 编写了 Typescript 的版本， 例子请迁移：
 
-[https://www.npmjs.com/package/@nuage/react-consumer](https://www.npmjs.com/package/@nuage/react-consumer)
+[https://github.com/ymzuiku/react-consumer](https://github.com/ymzuiku/react-consumer)
